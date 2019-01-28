@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	<!-- Basic -->
+	<meta charset="UTF-8" />
+
+	<title>教师批量导入</title>
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<!-- Import google fonts -->
+
+
+	<!-- Favicon and touch icons -->
+	<link rel="shortcut icon" href="/assets/ico/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-touch-icon-152x152.png" />
+
+	<%- include('components/common-css') %>
+	
+	<style type="text/css">
+		.file {
+			position: relative;
+			display: inline-block;
+			background: #D0EEFF;
+			border: 1px solid #99D3F5;
+			border-radius: 4px;
+			padding: 4px 12px;
+			overflow: hidden;
+			color: #1E88C7;
+			text-decoration: none;
+			text-indent: 0;
+			line-height: 20px;
+		}
+		.file input {
+			position: absolute;
+			font-size: 100px;
+			right: 0;
+			top: 0;
+			opacity: 0;
+		}
+		.file:hover {
+			background: #AADFFD;
+			border-color: #78C3F3;
+			color: #004974;
+			text-decoration: none;
+		}
+		.progress{
+			height: 25px;
+			background: #262626;
+			padding: 5px;
+			overflow: visible;
+			border-radius: 20px;
+			border-top: 1px solid #000;
+			border-bottom: 1px solid #7992a8;
+			margin-top: 50px;
+		}
+		.progress .progress-bar{
+			border-radius: 20px;
+			position: relative;
+			animation: animate-positive 2s;
+		}
+		.progress .progress-value{
+			display: block;
+			padding: 3px 7px;
+			font-size: 13px;
+			color: #fff;
+			border-radius: 4px;
+			background: #191919;
+			border: 1px solid #000;
+			position: absolute;
+			top: -40px;
+			right: -10px;
+		}
+		.progress .progress-value:after{
+			content: "";
+			border-top: 10px solid #191919;
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+			position: absolute;
+			bottom: -6px;
+			left: 26%;
+		}
+		 /* .progress-bar.active{
+			  animation: reverse progress-bar-stripes 0.40s linear infinite, animate-positive 2s;
+			}*/
+			@-webkit-keyframes animate-positive{
+				0% { width: 0; }
+			}
+			@keyframes animate-positive{
+				0% { width: 0; }
+			}
+		</style>
+		<!-- end: CSS file-->	
+
+
+		<!-- Head Libs -->
+		<script src="/assets/plugins/modernizr/js/modernizr.js"></script>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+			<![endif]-->		
+
+		</head>
+
+		<body>
+
+			<!-- Start: Header -->
+			<div class="navbar" role="navigation">
+				<div class="container-fluid container-nav">
+					<!-- Navbar Action -->
+					<ul class="nav navbar-nav navbar-actions navbar-left">
+						<li class="visible-md visible-lg"><a href="#" id="main-menu-toggle"><i class="fa fa-th-large"></i></a></li>
+						<li class="visible-xs visible-sm"><a href="#" id="sidebar-menu"><i class="fa fa-navicon"></i></a></li>			
+					</ul>
+					<!-- Navbar Left -->
+					<div class="navbar-left">
+						<!-- Search Form -->					
+						<!-- <form class="search navbar-form">
+							<div class="input-group input-search">
+								<input type="text" class="form-control bk-radius" name="q" id="q" placeholder="Search...">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+								</span>
+							</div>						
+						</form>	 -->																
+					</div>
+					<!-- Navbar Middle -->
+					<!-- <div class="navbar-middle">																
+						<select id="projectStudents">						
+							<option>所有项目</option> 
+							<option>项目A</option> 
+							<option>项目B</option> 
+							<option>项目C</option> 
+						</select> 															
+					</div> -->
+					<!-- Navbar Middle -->
+					<!-- Navbar Right -->
+					<div class="navbar-right">					
+						<%- include('components/notification') %>
+					</div>
+					<!-- End Navbar Right -->
+				</div>		
+			</div>
+			<!-- End: Header -->
+
+
+			<!-- Start: Content -->
+			<div class="container-fluid content">	
+				<div class="row">
+
+					<%- include('components/side-bar') %>	
+
+					<!-- Main Page -->
+					<div class="main ">
+						<!-- Page Header -->
+						<div class="page-header">
+							<div class="pull-left">
+								<ol class="breadcrumb visible-sm visible-md visible-lg">								
+									<li><a href="#"><i class="icon fa fa-home"></i>主页</a></li>
+
+									<li><a href="#"><i class="fa fa-table"></i>教师管理</a></li>
+									<li class="active"><i class="fa fa-thumbs-o-up"></i>教师批量导入</li>
+								</ol>						
+							</div>
+							<div class="pull-right">
+
+							</div>					
+						</div>
+						<!-- End Page Header -->					
+						<div class="row profile">
+
+
+
+							<div class="col-lg-12 col-md-12 col-sm-12">
+
+
+
+								<div class="panel panel-default">
+									<div class="panel-heading bk-bg-white">									
+										<h6><span class="label label-danger bk-margin-5"></span>教师导入</h6>	
+									</div>
+									<div class="panel-body bk-noradius">	
+
+										<a href="javascript:;" class="file">
+											<span id="show">选择文件</span>
+											<form id="excel">
+												<input type="file" name="excel" id='abcd'>
+
+											</form>
+										</a>
+										<a class="file" id="check_box" style=" text-decoration:none; display:none;cursor:pointer;">
+											<span>文件检查</span>
+										</a>
+										<div class="progress" id="progress_ok" style="display: none">
+											<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 100%;">
+												<div class="progress-value">100%</div>
+											</div>
+										</div>
+										<div class="progress" id="progress_err" style="display: none">
+											<div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 66%;">
+												<div class="progress-value">66%</div>
+											</div>
+										</div>
+										
+
+										<div class="alert alert-success" role="alert" style="display: none">
+											
+										</div>
+										<div class="alert alert-warning" role="alert" style="display: none">
+											
+										</div>
+										<div class="alert alert-danger" role="alert" style="display: none">
+											
+										</div>
+										<ul class="list-group" id="err_list" style="display: none">
+											
+										</ul>
+										<a class="file" id="import_box" style=" text-decoration:none; display:none;cursor:pointer;">
+											<span>导入</span>
+										</a>
+									</div>
+								</div>
+							</div>				
+						</div>
+					</div>
+					<!-- End Main Page -->		
+				</div>
+
+
+			</div><!--/container-->
+
+
+			<%- include('components/common-js') %>
+
+			
+			<!-- Pages JS -->
+			<script type="text/javascript">
+				$(function(){
+					$('#check_box').click(function(){
+						if($('#abcd').val()==''){
+							alert('请选择文件');
+							return
+						}
+						var form = new FormData(document.getElementById("excel"));
+
+						$.ajax({
+							url:"/teacher/check",
+							type:"post",
+							data:form,
+							processData:false,
+							contentType:false,
+							success:function(data){
+								console.log(data);
+								$('#err_list').html("");
+								$('#import_box').hide();
+								$(".progress").hide();
+								$(".alert").hide();
+								if(data.is_no_main){
+									$('.alert-warning').html("Excel中缺少列名【工号】，请确保表中有这一列").fadeIn();
+									exit();
+								}else{
+									data.err_arr.forEach(function(v,i){
+									$('#err_list').append('<li class="list-group-item">错误发生在第'+v.i+'行。错误类型：'+v.type+' ---> '+v.data.toString()+'</li>');
+									})
+								}			
+								if(data.is_error == false){	
+									$('#progress_ok').show();
+									$('.alert-success').html("共"+data.all+"条，可成功导入").fadeIn();
+									$('#import_box').fadeIn();
+								}else{
+									$('#progress_err').show();
+									$('.alert-warning').html("共"+data.all+"条，有"+data.err_arr.length+"条错误，请检查并修改excel文件<button type='button' id='show_err' class='btn btn-danger'>查看错误列表</button>").fadeIn();
+								}
+								
+
+								console.log(data);
+							},
+							error:function(e){
+								alert("错误！！");
+							}
+						}); 
+
+					});
+
+
+					$('#import_box').click(function(){
+						if($('#abcd').val()==''){
+							alert('请选择文件');
+							return
+						}
+						var form = new FormData(document.getElementById("excel"));
+
+						$.ajax({
+							url:"/teacher/import",
+							type:"post",
+							data:form,
+							processData:false,
+							contentType:false,
+							success:function(data){
+								alert("导入成功");
+								location.href = "/teacher/list";
+								console.log(data);
+							},
+							error:function(e){
+								alert("错误！！");
+							}
+						}); 
+
+					});
+
+
+					$(".file").on("change","input[type='file']",function(){
+						var filePath=$(this).val();
+						if(filePath.indexOf("xls")!=-1 || filePath.indexOf("xlsx")!=-1){
+							$(".fileerrorTip").html("").hide();
+							var arr=filePath.split('\\');
+							var fileName=arr[arr.length-1];
+							$("#show").html(fileName);
+							$('#check_box').fadeIn();
+
+
+						}else{
+							$("#show").html("文件类型有误");
+							return false 
+						}
+					})
+
+
+
+
+					$(".alert").on("click","button[id='show_err']",function(){
+						$("#err_list").slideToggle();
+					});
+
+
+
+				});
+			</script>
+
+			<!-- end: JavaScript-->
+
+		</body>
+
+		</html>

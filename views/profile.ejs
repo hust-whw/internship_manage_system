@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	<!-- Basic -->
+	<meta charset="UTF-8" />
+
+	<title>个人信息管理</title>
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<!-- Import google fonts -->
+	<!--<link href='http://fonts.useso.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>-->
+
+	<!-- Favicon and touch icons -->
+	<link rel="shortcut icon" href="/assets/ico/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-touch-icon-152x152.png" />
+
+
+	<%- include('components/common-css') %>
+
+
+</head>
+
+<body>
+
+	<!-- Start: Header -->
+	<div class="navbar" role="navigation">
+		<div class="container-fluid container-nav">
+			<!-- Navbar Action -->
+			<ul class="nav navbar-nav navbar-actions navbar-left">
+				<li class="visible-md visible-lg"><a href="#" id="main-menu-toggle"><i class="fa fa-th-large"></i></a></li>
+				<li class="visible-xs visible-sm"><a href="#" id="sidebar-menu"><i class="fa fa-navicon"></i></a></li>			
+			</ul>
+			<!-- Navbar Left -->
+
+			<div class="navbar-left">
+				<!-- Search Form -->					
+					<!--<form class="search navbar-form">
+						<div class="input-group input-search">
+							<input type="text" class="form-control bk-radius" name="q" id="q" placeholder="Search...">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+							</span>
+						</div>						
+					</form>-->
+
+				</div>
+				<!-- Navbar Right -->
+				<div class="navbar-right">	
+					<%- include('components/notification') %>
+				</div>
+				<!-- End Navbar Right -->
+			</div>		
+		</div>
+		<!-- End: Header -->
+		
+		<!-- Start: Content -->
+		<div class="container-fluid content">	
+			<div class="row">
+
+				<%- include('components/side-bar') %>	
+
+				<!-- Main Page -->
+				<div class="main">
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="pull-left">
+							<ol class="breadcrumb visible-sm visible-md visible-lg">								
+								<li><a href="/blog/list"><i class="icon fa fa-home"></i>主页</a></li>								
+								<li class="active"><i class="fa fa-reddit"></i>个人信息</li>
+							</ol>						
+						</div>
+						<div class="pull-right">
+
+						</div>					
+					</div>
+					<!-- End Page Header -->
+					<div class="row profile">
+						<div class="col-lg-5 col-md-6 col-sm-6">
+							<div class="panel">
+								<div class="panel-body">
+									<div class="text-left bk-bg-white bk-padding-top-40 bk-padding-bottom-10">
+										<div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bk-vcenter text-center">                                
+												<div class="bk-avatar">
+													<a class="bk-avatar" href="/profile/avatar_clip">
+														<img src="<%= user.Avatar %>" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x" />
+													</a>
+												</div>
+												<h4 class="bk-margin-top-10 bk-docs-font-weight-300"><%= user.Name%></h4>
+											</div>
+											<hr class="bk-margin-off" />
+
+										</div>
+									</div>
+									<hr class="bk-margin-off" />
+									<div class="bk-ltr bk-bg-white">
+										<div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<div class="bk-widget bk-border-off bk-webkit-fix">
+													<div class="bk-bg-white text-center bk-padding-top-20 bk-padding-bottom-10">
+														<div class="row">
+															<div class="text-left bk-padding-left-10">
+																<h4 class="bk-margin-off">个人基本信息</h4>
+															</div>                            
+														</div>
+													</div> 
+													<div class="bs-example">
+														<div id="carousel-example-generic3" class="carousel bk-carousel-fade slide" data-ride="carousel">
+															<div class="carousel-inner">
+																<div class="item">
+																	<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom" style="padding-left: 18%">
+																		<div class="pull-left bk-margin-top-10 bk-margin-right-10">
+																			<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-primary">
+																				<i class="fa fa-thumbs-up"></i>
+																			</div>
+																		</div>
+																		<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">所在地</h5>
+																		<p>
+																			<small>浙江省温州市瓯海区温州大学</small>
+																		</p>
+																	</a>                                   
+																</div>
+																<div class="item active">
+																	<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom" style="padding-left: 18%">
+																		<div class="pull-left bk-margin-top-10 bk-margin-right-10">
+																			<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-info">
+																				<i class="fa fa-building-o"></i>
+																			</div>
+																		</div>
+																		<h5 class="bk-fg-info bk-fg-darken bk-margin-off-bottom">学校</h5>
+																		<p>
+																			<small>WenZhou University</small>
+																		</p>
+																	</a>                                    
+																</div>                               
+															</div>
+															<a class="left carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="prev">
+																<span class="fa fa-angle-left icon-prev bk-bg-very-light-gray"></span>
+															</a>
+															<a class="right carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="next">
+																<span class="fa fa-angle-right icon-next"></span>
+															</a>
+														</div>
+													</div>																				
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr class="bk-margin-off" />
+									<div class="bk-ltr bk-bg-white">
+										<div class="row" >
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<div class="bk-bg-white text-center bk-padding-top-20 bk-padding-bottom-10">
+													<div class="row">
+														<div class="text-left bk-padding-left-10">
+															<h4 class="bk-margin-off">现住址</h4>
+														</div>                            
+													</div>
+												</div> 
+												<div class="bk-bg-white bk-bg-lighten bk-padding-top-10 bk-padding-left-20">
+													<div  style="padding-left: 18%" class="pull-left bk-margin-right-10">
+														<div class="bk-round bk-bg-darken bk-border-off">
+															<i class="fa fa-map-marker fa-2x bk-fg-danger"></i>
+														</div>
+													</div>
+													<p class="text-left">
+														<small>华中科技大学电信学院</small>
+													</p>
+												</div>  
+											</div>																	
+										</div>
+									</div>
+									<div class="bk-ltr bk-padding-bottom-20 bk-padding-left-20">
+										<div class="row " style="padding-left: 18%">
+
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												姓名：<span id="xingming"><%= user.Name %></span>
+											</div>
+											<% if(user.Role == 2){%>
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												学号：<span id="xuehao"><%= user.MemberID %></span>
+											</div>
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												专业：<span id="zhuanye"><%= user.Major %></span>
+											</div>
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												年级：<span id="nianji"><%= user.Grade %></span>
+											</div>
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												班级：<span id="banji"><%= user.Class %></span>
+											</div>				 
+											<% }else if(user.Role == 0){ %>
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												账号：<span id="xuehao"><%= user.MemberID %></span>
+											</div>
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												专业：<span id="zhuanye"><%= user.Major %></span>
+											</div>
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												年级：<span id="nianji"><%= user.Grade %></span>
+											</div>
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												班级：<span id="banji"><%= user.Class %></span>
+											</div>	
+											<% }else{ %>
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												账号：<span id="xuehao"><%= user.MemberID %></span>
+											</div>
+											<% } %>
+
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												手机：<span id="cellphone"><%= user.Phone %></span>
+											</div>
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												QQ：<span id="qq"><%= user.QQ %></span>
+											</div>
+											<div class="col-12-4 col-md-12 col-sm-12 col-xs-12 bk-bg-white bk-padding-top-10">
+												邮箱：<span id="email"><%= user.Email %></span>
+											</div>
+										</div>
+									</div>									
+								</div>
+							</div>							
+						</div>
+						
+						<div class="col-lg-7 col-md-6 col-sm-6">
+							<div class="panel">
+								<div class="panel-body">
+									<div class="tabs tabs-warning">
+										<ul class="nav nav-tabs">										
+											<li class="active">
+												<a href="#overview" data-toggle="tab">修改密码</a>
+											</li>
+											<li>
+												<a href="#edit" data-toggle="tab">修改个人信息</a>
+											</li>
+										</ul>
+										
+										<div class="tab-content">
+
+
+											<div id="overview" class="tab-pane active">
+												<form class="form-horizontal" method="get">
+													<div class="bk-bg-white bk-padding-top-10 bk-padding-bottom-10">														
+														<h4></h4>
+														<fieldset>
+															<div class="form-group">
+																<label for="profileNewPassword">新密码</label><span id='error1' style="color: red;display: none;"></span>	
+																<input type="password" class="form-control" id="profileNewPassword" placeholder="输入新密码" />														
+															</div>
+															<div class="form-group">
+																<label for="profileNewPasswordRepeat">再次确认</label><span id='error2' style="color: red;display: none;"></span>														
+																<input type="password" class="form-control" id="profileNewPasswordRepeat" placeholder="再次确认新密码" />														
+															</div>
+														</fieldset>
+														<div class="bk-bg-white">
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="pull-right">
+																		<button type="button" class="btn btn-primary" id="submitNewPassword">确认</button>
+																		<button type="reset" class="btn btn-default" id="pswReset">重置</button>											
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</form>
+
+											</div>
+											
+											<!--<div id="edit" class="tab-pane updateProfile">-->
+											<div id="edit" class="tab-pane updateProfile">		
+												<form class="form-horizontal" method="get">
+													<div class="bk-bg-white bk-padding-top-10 bk-padding-bottom-10">
+														<h4>个人信息管理</h4>
+														<fieldset>
+
+															<div class="form-group">
+																<label for="profileFirstName">姓名</label>
+																<input type="text" class="form-control" id="editName" placeholder="姓名" value="<%= user.Name %>" />
+															</div>
+															<% if(user.Role == 1){%>
+															<!-- 老师 -->
+															<% }else{ %>
+															<div class="form-group">
+																<label for="profileLastName">专业</label>
+																<input type="text" class="form-control" id="editMajor" placeholder="专业" value="<%= user.Major %>" />
+															</div>
+															<div class="form-group">
+																<label for="profileAddress">年级</label>
+																<input type="text" class="form-control" id="editGrade" placeholder="年级" value="<%= user.Grade %>" />
+															</div>
+															<div class="form-group">
+																<label for="profileCompany">班级</label>
+																<input type="text" class="form-control" id="editClass" placeholder="班号" value="<%= user.Class %>" />
+															</div>
+															<% } %>
+															<div class="form-group">
+																<label for="profileCompany">手机号</label>
+																<input type="text" class="form-control" id="editCellPhone" placeholder="输入手机号码" value="<%= user.Phone %>" />
+															</div>
+															<div class="form-group">
+																<label for="profileCompany">QQ</label>
+																<input type="text" class="form-control" id="editqq" placeholder="输入QQ号码" value="<%= user.QQ %>" />
+															</div>
+															<div class="form-group">
+																<label for="profileCompany">邮箱</label>
+																<input type="text" class="form-control" id="editEmail" placeholder="输入邮箱" value="<%= user.Email %>" />
+															</div>
+														</fieldset>
+														<hr />
+
+														<div class="bk-bg-white">
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="pull-right">
+																		<button type="button" class="btn btn-primary" id="submitAlter">提交</button>
+																		<input type="hidden" id="alter_id" value="<%= user._id %>"></input>											
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>				
+				</div>
+				<!-- End Main Page -->		
+
+				<!-- Footer -->
+
+				<!-- End Footer -->
+
+			</div>
+		</div><!--/container-->
+
+		
+		<div class="clearfix"></div>	
+
+		<%- include('components/common-js') %>
+
+		<!-- Pages JS -->
+		<script type="text/javascript">
+			$(function(){
+				$('#submitNewPassword').click(function(){
+					$('#error1').hide();
+					$('#error2').hide();
+					var psw1 = $('#profileNewPassword').val();
+					var psw2 = $('#profileNewPasswordRepeat').val();
+
+					if(psw1 == ''){
+						$('#error1').html('【没有输入密码】').show();
+						return;
+					}
+					if(psw2 == ''){
+						$('#error2').html('【没有输入密码】').show();
+						return;
+					}
+					if(psw1.length < 6){
+						$('#error1').html('【密码长度过短】').show();
+						return;
+					}
+					if(psw2.length < 6){
+						$('#error2').html('【密码长度过短】').show();
+						return;
+					}
+					if(psw1 !== psw2){
+						$('#error2').html('【两次输入密码不相同，请检查】').show();
+						return;
+					}
+					$.ajax({ 
+						url: '/profile/psw_reset', 
+						type: 'POST', 
+						data: {
+							psw1:psw1,
+							psw2:psw2
+						}, 
+
+						success: function (returndata) {
+							alert('修改成功');
+							location.reload(); 
+							
+						}, 
+						error: function (returndata) { 
+
+						} 
+					});
+
+				});
+				$('#pswReset').click(function(){
+					var psw1 = $('#profileNewPassword').val('');
+					var psw2 = $('#profileNewPasswordRepeat').val('');
+
+				});
+
+
+				$('#submitAlter').click(function(){
+					var StudentID = $('#alter_id').val();
+					var Name = $('#editName').val();
+					var Major = $('#editMajor').val();
+					var Grade = $('#editGrade').val();
+					var Class = $('#editClass').val();
+					var Phone = $('#editCellPhone').val();
+					var QQ = $('#editqq').val();
+					var Email = $('#editEmail').val();
+
+					var data = {
+						Name:Name,
+						Major:Major,
+						Grade:Grade,
+						Class:Class,
+						Phone:Phone,
+						QQ:QQ,
+						Email:Email
+					}
+
+
+					$.ajax({ 
+						url: '/profile/alter', 
+						type: 'POST', 
+						data: {
+							userID:StudentID,
+							MSG:data
+						},
+
+						success: function (returndata) {
+							alert('修改成功');
+
+							location.reload(); 						
+						}, 
+						error: function (returndata) { 
+
+						} 
+					});
+				});
+
+
+
+			});
+		</script>>
+
+		<!-- end: JavaScript-->
+
+	</body>
+
+	</html>

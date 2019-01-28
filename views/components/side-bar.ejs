@@ -1,0 +1,227 @@
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<div class="sidebar-collapse">
+			<!-- Sidebar Header Logo-->
+			<div class="sidebar-header">
+				<img src="/assets/img/wz2.png" class="img-responsive" alt="" />
+			</div>
+			<!-- Sidebar Menu-->
+			<div class="sidebar-menu">						
+				<nav id="menu" class="nav-main" role="navigation">
+				<% if(user.Role == 2) {%>
+					<ul class="nav nav-sidebar">
+						<div class="panel-body text-center">								
+							<div class="userbox"><!--class="flag"-->
+								<!--<img src="/assets/img/flags/wz.png" class="img-flags" alt="" />-->
+								<a href="/profile" >
+									<figure class="profile-picture">
+										<img src="<%= user.Avatar %>" class="img-circle" alt="" />
+									</figure>
+
+								</a>
+							</div>
+						</div>
+						<li class="active">
+							<a href="/blog/list">
+								<i class="fa fa-laptop" aria-hidden="true"></i><span>主页</span>
+							</a>
+						</li>
+
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-copy" aria-hidden="true"></i><span>个人信息管理</span>
+							</a>
+							<ul class="nav nav-children">
+							<li><a href="/profile"><span class="text"> 修改信息</span></a></li>
+							</ul>
+						</li>
+
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-table" aria-hidden="true"></i><span>工作日志管理</span>
+							</a>
+							<ul class="nav nav-children">
+								<li><a href="/blog/upload"><span class="text"> 新建工作日志</span></a></li>
+								<li><a href="/blog/list"><span class="text"> 查看工作日志</span></a></li>	
+							</ul>
+						</li>
+
+						<li class="nav-parent">
+							<a href="/logout">
+								<i class="fa fa-power-off"></i><span>退出登录</span>
+							</a>
+
+						</li>
+
+					</ul>
+				<% }else if(user.Role == 1){ %>
+					<ul class="nav nav-sidebar">
+						<div class="panel-body text-center">								
+							<div class="userbox"><!--class="flag"-->
+								<!--<img src="/assets/img/flags/wz.png" class="img-flags" alt="" />-->
+								<a href="/profile" >
+									<figure class="profile-picture">
+										<img src="<%= user.Avatar %>" class="img-circle" alt="" />
+									</figure>
+
+								</a>
+							</div>
+						</div>
+						<li class="active">
+							<a href="/blog/list">
+								<i class="fa fa-laptop" aria-hidden="true"></i><span>主页<%= user.role%></span>
+							</a>
+						</li>
+
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-copy" aria-hidden="true"></i><span>个人信息管理</span>
+							</a>
+							<ul class="nav nav-children">
+							<li><a href="/profile"><span class="text"> 修改信息</span></a></li>
+							</ul>
+						</li>
+
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-list-alt" aria-hidden="true"></i><span>学生管理</span>
+							</a>
+							<ul class="nav nav-children">
+								<li><a href="/student/rank"><span class="text"> 排行榜</span></a></li>
+								<li><a href="/student/list"><span class="text"> 查看学生列表</span></a></li>
+								<li><a href="/student/add"><span class="text"> 新建学生项</span></a></li>
+								<li><a href="/student/import"><span class="text"> 学生批量导入</span></a></li>
+							</ul>
+						</li>
+
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-tasks" aria-hidden="true"></i><span>项目管理</span>
+							</a>
+							<ul class="nav nav-children">
+								<li><a href="/project/list"><span class="text"> 查看项目信息</span></a></li>
+								<li><a href="/project/add"><span class="text"> 新建项目</span></a></li>
+							</ul>
+						</li>
+						<li class="nav-parent1">
+							<a href="/blog/list">
+								<i class="fa fa-table" aria-hidden="true"></i><span>查看工作日志</span>
+							</a>
+						</li>
+
+						<li class="nav-parent">
+							<a href="/logout">
+								<i class="fa fa-power-off"></i><span>退出登录</span>
+							</a>
+
+						</li>
+
+					</ul>
+				<% } else if(user.Role == 0){%>
+				<ul class="nav nav-sidebar">
+						<div class="panel-body text-center">								
+							<div class="userbox"><!--class="flag"-->
+								<!--<img src="/assets/img/flags/wz.png" class="img-flags" alt="" />-->
+								<a href="/profile" >
+									<figure class="profile-picture">
+										<img src="<%= user.Avatar %>" class="img-circle" alt="" />
+									</figure>
+
+								</a>
+							</div>
+						</div>
+						<li class="active">
+							<a href="/data/student">
+								<i class="fa fa-laptop" aria-hidden="true"></i><span>主页<%= user.role%></span>
+							</a>
+						</li>
+
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-copy" aria-hidden="true"></i><span>个人信息管理</span>
+							</a>
+							<ul class="nav nav-children">
+							<li><a href="/profile"><span class="text"> 修改信息</span></a></li>
+							</ul>
+						</li>
+
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-list-alt" aria-hidden="true"></i><span>教师管理</span>
+							</a>
+							<ul class="nav nav-children">
+								<li><a href="/teacher/list"><span class="text"> 查看教师列表</span></a></li>
+								<li><a href="/teacher/add"><span class="text"> 新建教师</span></a></li>
+								<li><a href="/teacher/import"><span class="text"> 教师批量导入</span></a></li>
+							</ul>
+						</li>
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-list-alt" aria-hidden="true"></i><span>学生管理</span>
+							</a>
+							<ul class="nav nav-children">
+								<li><a href="/student/rank"><span class="text"> 排行榜</span></a></li>
+								<li><a href="/student/list"><span class="text"> 查看学生列表</span></a></li>
+								<li><a href="/student/add"><span class="text"> 新建学生项</span></a></li>
+								<li><a href="/student/import"><span class="text"> 学生批量导入</span></a></li>
+							</ul>
+						</li>
+
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-tasks" aria-hidden="true"></i><span>项目管理</span>
+							</a>
+							<ul class="nav nav-children">
+								<li><a href="/project/list"><span class="text"> 查看项目信息</span></a></li>
+								<li><a href="/project/add"><span class="text"> 新建项目</span></a></li>
+							</ul>
+						</li>
+				<li class="nav-parent">
+							<a>
+								<i class="fa fa-table" aria-hidden="true"></i><span>工作日志管理</span>
+							</a>
+							<ul class="nav nav-children">
+								<li><a href="/blog/upload"><span class="text"> 新建工作日志</span></a></li>
+								<li><a href="/blog/list"><span class="text"> 查看工作日志</span></a></li>	
+							</ul>
+						</li>
+
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-table" aria-hidden="true"></i><span>数据分析管理</span>
+							</a>
+							<ul class="nav nav-children">
+								<li><a href="/data/student"><span class="text"> 学生数据分析</span></a></li>
+								<li><a href="chart-xchart"><span class="text"> 总体数据分析</span></a></li>										
+							</ul>
+						</li>
+						<li class="nav-parent">
+							<a>
+								<i class="fa fa-tasks" aria-hidden="true"></i><span>参数管理</span>
+							</a>
+							<ul class="nav nav-children">
+								<li><a href="/param/param_change"><span class="text"> 参数配置</span></a></li>
+								<li><a href="/param/unusual_check"><span class="text"> 异常管理</span></a></li>										
+							</ul>
+						</li>
+						<li class="nav">
+							<a href="/logout">
+								<i class="fa fa-power-off"></i><span>退出登录</span>
+							</a>
+
+						</li>
+				</ul>
+				<% }else{} %>
+					
+				</nav>
+				
+			</div>
+			<!-- End Sidebar Menu-->
+		</div>
+		<!-- Sidebar Footer-->
+		<div class="sidebar-footer">					
+		</div>
+		<!-- End Sidebar Footer-->
+	</div>
+<!-- End Sidebar -->

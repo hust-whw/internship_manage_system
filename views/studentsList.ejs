@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	<!-- Basic -->
+	<meta charset="UTF-8" />
+
+	<title>学生列表</title>
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<!-- Import google fonts -->
+	<!--<link href='http://fonts.useso.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>-->
+
+	<!-- Favicon and touch icons -->
+	<link rel="shortcut icon" href="/assets/ico/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-touch-icon-152x152.png" />
+
+
+
+	<link href="https://cdn.bootcss.com/select2/3.4.6/select2.min.css" rel="stylesheet">
+	<link href="https://cdn.bootcss.com/datatables/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+	<!-- <link href="/assets/plugins/jquery-datatables-bs3/css/datatables.css" rel="stylesheet" />	 -->
+	<%- include('components/common-css') %>
+
+
+</head>
+
+<body>
+
+
+	<!-- Start: Header -->
+	<div class="navbar" role="navigation">
+		<div class="container-fluid container-nav">
+			<!-- Navbar Action -->
+			<ul class="nav navbar-nav navbar-actions navbar-left">
+				<li class="visible-md visible-lg"><a href="#" id="main-menu-toggle"><i class="fa fa-th-large"></i></a></li>
+				<li class="visible-xs visible-sm"><a href="#" id="sidebar-menu"><i class="fa fa-navicon"></i></a></li>			
+			</ul>
+			<!-- Navbar Left -->
+
+			<div class="navbar-left">
+				<!-- Search Form -->					
+					<!--<form class="search navbar-form">
+						<div class="input-group input-search">
+							<input type="text" class="form-control bk-radius" name="q" id="q" placeholder="Search...">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+							</span>
+						</div>						
+					</form>-->
+					
+				</div>
+				<!-- Navbar Right -->
+				<div class="navbar-right">					
+					<%- include('components/notification') %>
+				</div>
+				<!-- End Navbar Right -->
+			</div>		
+		</div>
+		<!-- End: Header -->
+
+		<!-- Start: Content -->
+		<div class="container-fluid content">	
+			<div class="row">
+
+				<%- include('components/side-bar') %>
+
+				<!-- Main Page -->
+				<div class="main sidebar-minified">			
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="pull-left">
+							<ol class="breadcrumb visible-sm visible-md visible-lg">								
+								<li><a href="#"><i class="icon fa fa-home"></i>主页</a></li>
+								<li><a href="#"><i class="fa fa-table"></i>学生管理</a></li>
+								<li class="active"><i class="fa fa-thumbs-o-up"></i>查看学生列表</li>
+							</ol>						
+						</div>
+						<div class="pull-right">
+
+						</div>					
+					</div>
+					<!-- End Page Header -->
+					<div class="row">
+						<div id="main_box" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="panel panel-default bk-bg-white">
+								<div class="panel-heading bk-bg-white">
+									<h6><i class="fa fa-table red"></i><span class="break"></span>
+										学生列表
+
+										<a href="/student/add"><button type="button" class="bk-margin-5 btn btn-primary">+新建学生项</button></a>
+										<!-- <a ><button type="button" class="bk-margin-5 btn btn-success">全部归档</button></a> -->
+									</h6>							
+									<div class="panel-actions">
+										<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+
+									</div>
+								</div>
+								<div class="panel-body">
+									<table class="table table-bordered table-striped" id="datatable-default">
+										<thead>
+											<th>学号</th>
+											<th>姓名</th>
+											<th>专业</th>
+											<th>年级</th>
+											<th>班级</th>
+											<th>手机号</th>
+											<th>邮箱</th>
+											<th>QQ</th>
+											<th>项目名称</th>
+											<!-- <th>所属教师/所带学生</th> -->
+											<!-- <th>工号/学号</th> -->
+											<th>成员管理</th>
+										</thead>
+										<tbody>
+											<% student.forEach(function(x){ %>  
+											<tr class="gradeX">
+												<td><%= x.MemberID %></td>
+												<td><%= x.Name %></td>
+												<td><%= x.Major %></td>
+												<td><%= x.Grade %></td>
+												<td><%= x.Class %></td>
+												<td><%= x.Phone %></td>
+												<td><%= x.Email %></td>
+												<td><%= x.QQ %></td>
+												<td><% x.ProjectID.forEach(function(p){ %>
+													<%= p.Name %>,
+
+													<% }); %></td>
+													<!-- <td>刘老师</td> -->
+													<!-- <td>11111111</td> -->
+
+													<td class="actions">
+
+														<button data-id="<%= x._id %>" class="studentRef bk-margin-5 btn btn-labeled btn-danger" type="button" title="重置"><i class="fa fa-refresh"></i></button>
+														<button data-id="<%= x._id %>" class="studentEdit bk-margin-5 btn btn-labeled btn-danger" type="button" title="编辑"><i class="fa fa-pencil"></i></button>
+														<button data-id="<%= x._id %>" class="studentDel= bk-margin-5 btn btn-labeled btn-danger" type="button" title="删除"><i class="fa fa-trash-o"></i></button>	
+
+													</td>
+												</tr>
+												<% }); %>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+
+							<div id="alter_box" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: none">
+								<div class="panel">
+									<div class="panel-body">
+										<div class="tabs tabs-warning">
+											<ul class="nav nav-tabs">										
+												<li class="active">
+													<a href="#edit" data-toggle="tab">修改信息</a>
+												</li>
+											</ul>
+
+											<div class="tab-content">
+
+
+
+
+												<!--<div id="edit" class="tab-pane updateProfile">-->
+												<div id="edit" class="tab-pane updateProfile active">		
+													<form class="form-horizontal" method="get">
+														<div class="bk-bg-white bk-padding-top-10 bk-padding-bottom-10">
+															<h4>个人信息管理</h4>
+															<fieldset>
+																<div class="form-group">
+																	<label for="profileFirstName">学号</label>
+																	<input type="text" class="form-control" id="MemberID" placeholder="" value="" disabled />
+																</div>
+
+																<div class="form-group">
+																	<label for="profileFirstName">姓名</label>
+																	<input type="text" class="form-control" id="editName" placeholder="姓名" value="" />
+																</div>
+																<div class="form-group">
+																	<label for="profileLastName">专业</label>
+																	<input type="text" class="form-control" id="editMajor" placeholder="专业" value="" />
+																</div>
+																<div class="form-group">
+																	<label for="profileAddress">年级</label>
+																	<input type="text" class="form-control" id="editGrade" placeholder="年级" value="" />
+																</div>
+																<div class="form-group">
+																	<label for="profileCompany">班级</label>
+																	<input type="text" class="form-control" id="editClass" placeholder="班号" value="" />
+																</div>
+																<div class="form-group">
+																	<label for="profileCompany">手机号</label>
+																	<input type="text" class="form-control" id="editCellPhone" placeholder="输入手机号码" value="" />
+																</div>
+																<div class="form-group">
+																	<label for="profileCompany">QQ</label>
+																	<input type="text" class="form-control" id="editqq" placeholder="输入QQ号码" value="" />
+																</div>
+																<div class="form-group">
+																	<label for="profileCompany">邮箱</label>
+																	<input type="text" class="form-control" id="editEmail" placeholder="输入邮箱" value="" />
+																</div>
+															</fieldset>
+															<hr />
+
+															<div class="bk-bg-white">
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="pull-right">
+																			<input type="hidden" id="alter_id"></input>
+																			<button type="button" id="submitAlter" class="btn btn-primary">提交</button>
+																			<button type="button" id="hide_box" class="btn btn-default">返回</button>											
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>					   
+					</div>
+					<!-- End Main Page -->	
+
+
+				</div>
+			</div><!--/container-->
+
+
+			<div class="clearfix"></div>		
+
+			<%- include('components/common-js') %>
+			
+			<!-- <script src="/assets/plugins/select2/select2.js"></script>  -->
+			<script src="https://cdn.bootcss.com/select2/3.4.6/select2.min.js"></script>   
+
+			<!-- <script src="/assets/plugins/jquery-datatables/media/js/jquery.dataTables.js"></script> -->
+			<script src="https://cdn.bootcss.com/datatables/1.10.15/js/jquery.dataTables.min.js"></script>
+
+			<!-- <script src="/assets/plugins/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script> -->
+			<script src="https://cdn.bootcss.com/datatables-tabletools/2.1.5/js/TableTools.min.js"></script>
+			<script src="https://cdn.bootcss.com/datatables-tabletools/2.1.5/js/ZeroClipboard.min.js"></script>
+
+			<script src="/assets/plugins/jquery-datatables-bs3/js/datatables.js"></script>    	
+
+			<script src="/assets/js/pages/table-advanced.js"></script>
+
+			<script type="text/javascript">
+					$.extend( true, $.fn.dataTable.defaults, {
+						"language": {
+							"url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Chinese.json"
+						},
+						"searching": true,
+						"ordering": false
+					} );
+
+					$(document).ready(function() {
+						$('#datatable-default').DataTable();
+ 					} );
+				$(function(){
+					
+
+					$("#datatable-default").on('click','.studentDel',function(){
+					// $('.studentDel').click(function(){
+						var stu_id = $(this).attr('data-id');
+						$.ajax({ 
+							url: '/student/del', 
+							type: 'POST', 
+							data: {
+								userID:stu_id
+							}, 
+
+							success: function (returndata) { 
+								alert('操作成功');
+								location.reload()
+
+							}, 
+							error: function (returndata) { 
+								alert("提交失败！"); 
+							} 
+						});
+					});
+
+					$("#datatable-default").on('click','.studentRef',function(){
+					// $('.studentRef').click(function(){
+
+						if(confirm("是否重置密码？")){
+							var stu_id = $(this).attr('data-id');
+							$.ajax({ 
+								url: '/student/ref', 
+								type: 'POST', 
+								data: {
+									userID:stu_id
+								}, 
+
+								success: function (returndata) { 
+									alert('操作成功');
+									location.reload()
+
+								}, 
+								error: function (returndata) { 
+									alert("失败！"); 
+								} 
+							});
+						}	
+
+					});
+
+					$("#datatable-default").on('click','.studentEdit',function(){
+					// $('.studentEdit').click(function(){
+						var stu_id = $(this).attr('data-id');
+
+						$.ajax({ 
+							url: '/student/get_msg', 
+							type: 'POST', 
+							data: {
+								userID:stu_id
+							}, 
+
+							success: function (user_msg) {
+								console.log(user_msg)
+								$('#MemberID').val(user_msg.MemberID); 
+								$('#editName').val(user_msg.Name);
+								$('#editMajor').val(user_msg.Major);
+								$('#editGrade').val(user_msg.Grade);
+								$('#editClass').val(user_msg.Class);
+								$('#editCellPhone').val(user_msg.Phone);
+								$('#editqq').val(user_msg.QQ);
+								$('#editEmail').val(user_msg.Email);
+								// alert('操作成功');
+								$('#alter_id').val(stu_id);
+								$('#main_box').hide();
+								$('#alter_box').slideDown();
+
+							}, 
+							error: function (returndata) { 
+								alert("失败！"); 
+							} 
+						});
+						
+					});
+
+					$('#hide_box').click(function(){
+						$('#main_box').fadeIn();
+						$('#alter_box').hide();
+					});
+
+					$('#submitAlter').click(function(){
+						var StudentID = $('#alter_id').val();
+						var Name = $('#editName').val();
+						var Major = $('#editMajor').val();
+						var Grade = $('#editGrade').val();
+						var Class = $('#editClass').val();
+						var Phone = $('#editCellPhone').val();
+						var QQ = $('#editqq').val();
+						var Email = $('#editEmail').val();
+
+						var data = {
+							Name:Name,
+							Major:Major,
+							Grade:Grade,
+							Class:Class,
+							Phone:Phone,
+							QQ:QQ,
+							Email:Email
+						}
+
+
+						$.ajax({ 
+							url: '/profile/altered', 
+							type: 'POST', 
+							data: {
+								userID:StudentID,
+								MSG:data
+							}, 
+
+							success: function (returndata) {
+								alert('修改成功');
+
+								location.reload(); 						
+							}, 
+							error: function (returndata) { 
+
+							} 
+						});
+					});
+				});
+
+
+
+			</script>
+			<!-- end: JavaScript-->
+
+		</body>
+
+		</html>

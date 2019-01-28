@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+	
+		<!-- Basic -->
+    	<meta charset="UTF-8" />
+
+		<title>参数管理</title>
+	
+		<!-- Mobile Metas -->
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		
+		
+		<!-- Favicon and touch icons -->
+		<link rel="shortcut icon" href="/assets/ico/favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon.png" />
+		<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-touch-icon-57x57.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72x72.png" />
+		<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-touch-icon-76x76.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114x114.png" />
+		<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-touch-icon-120x120.png" />
+		<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144x144.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-touch-icon-152x152.png" />
+		
+
+		<%- include('components/common-css') %>		
+		
+	</head>
+	
+	<body>
+	
+		<!-- Start: Header -->
+		<div class="navbar" role="navigation">
+			<div class="container-fluid container-nav">
+				<!-- Navbar Action -->
+				<ul class="nav navbar-nav navbar-actions navbar-left">
+					<li class="visible-md visible-lg"><a href="#" id="main-menu-toggle"><i class="fa fa-th-large"></i></a></li>
+					<li class="visible-xs visible-sm"><a href="#" id="sidebar-menu"><i class="fa fa-navicon"></i></a></li>			
+				</ul>
+				<!-- Navbar Left -->
+				
+				<div class="navbar-left">
+					<!-- Search Form -->					
+					<!--<form class="search navbar-form">
+						<div class="input-group input-search">
+							<input type="text" class="form-control bk-radius" name="q" id="q" placeholder="Search...">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+							</span>
+						</div>						
+					</form>-->
+					
+	
+					
+				</div>
+				<!-- Navbar Right -->
+				<div class="navbar-right">					
+					<%- include('components/notification') %>
+				</div>
+				<!-- End Navbar Right -->
+			</div>		
+		</div>
+		<!-- End: Header -->
+    
+		
+		<!-- Start: Content -->
+		<div class="container-fluid content">	
+			<div class="row">
+			
+				<%- include('components/side-bar') %>
+		
+				<!-- Main Page -->
+				<div class="main ">
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="pull-left">
+							<ol class="breadcrumb visible-sm visible-md visible-lg">								
+								<li><a href="index.html"><i class="icon fa fa-home"></i>主页</a></li>
+								<li><a href="#"><i class="fa fa-file-text"></i>参数配置</a></li>
+								
+							</ol>						
+						</div>
+						<div class="pull-right">
+							
+						</div>					
+					</div>
+					<!-- End Page Header -->					
+					<div class="row">																			
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">																	
+							<div class="panel panel-default bk-widget bk-border-off">
+								<div class="panel-heading bk-bg-white text-center">
+									<div class="row">
+										<div class="col-xs-8 text-left bk-vcenter">
+											<h6 class="bk-margin-off">更新参数</h6>
+										</div>
+										<div class="col-xs-4 bk-vcenter text-right">
+											<i class="fa fa-file-text-o"></i>
+										</div>
+									</div>
+								</div>
+								<form id="mayform" method="post" action="success.html">
+									<div class="panel-body bk-padding-off-top bk-padding-off-bottom bk-noradius">
+										<div class="row">
+											<div class="col-xs-2 bk-vcenter bk-padding-top-10 bk-padding-bottom-10">
+												<a class="bk-round bk-border-off bk-bg-danger bk-bg-lighten bk-icon bk-icon-2x bk-icon-default">
+													<i class="fa fa-trophy fa-2x"></i>
+												</a>
+											</div>
+											<div class="col-xs-10 bk-vcenter">
+												<h6 class="bk-fg-danger bk-margin-off-bottom"><strong>上传次数</strong></h6>
+												<p>
+													<small> 实习期间每天上传大于等于<input type="text" id="everyDay" value="2" name="user" check="required phone"/>次信息，一共上传次数大于<input type="text" id="sumEveryDay" value="104" name="user" check="required phone"/>次，勤奋指标<input type="text" id="hardwoktip" value="15" name="user" check="required phone"/>分</small>
+												</p>
+												<p>
+													<small>实习期间一共上传次数大于<input type="text" id="sum2" value="104" name="user" check="required phone"/>次，勤奋指标<input type="text" id="hardwoktip2" value="10" name="user" check="required phone"/>分</small>
+												</p>
+												<p>
+													<small>  实习期间一共上传次数<input type="text" id="sum3" value="52" name="user" check="required phone"/>--<input type="text" id="sum4" value="104" name="user" check="required phone"/>次，勤奋指标<input type="text" id="hardwoktip3" value="8" name="user" check="required phone"/>分</small>
+												</p>
+												<p>
+													<small>  实习期间一共上传次数<input type="text" id="sum5" value="25" name="user" check="required phone"/>--<input type="text" id="sum6" value="52" name="user" check="required phone"/>次，勤奋指标<input type="text" id="hardwoktip4" value="5" name="user" check="required phone"/>分</small>
+												</p>
+												<p>
+													<small>  实习期间一共上传次数小于<input type="text" id="sum7" value="25" name="user" check="required phone"/>次，勤奋指标<input type="text" id="hardwoktip5" value="3" name="user" check="required phone"/>分</small>
+												</p>
+											</div>
+											<hr class="bk-margin-off" />
+										</div>
+										<div class="row">
+											<div class="col-xs-2 bk-vcenter bk-padding-top-10 bk-padding-bottom-10">
+												<a class="bk-round bk-border-off bk-bg-primary bk-bg-lighten bk-icon bk-icon-2x bk-icon-default">
+													<i class="fa fa-star fa-2x"></i>
+												</a>
+											</div>
+											<div class="col-xs-10 bk-vcenter">
+												<h6 class="bk-fg-primary bk-margin-off-bottom"><strong>GPS位置</strong></h6>
+												<p>
+													<small>将实习地点的信息画条状图，以表达学生实习区域，只要学生上传的GPS定位在几个的GPS位置，真实性指标<input type="text" id="GPSLocation" value="5" name="user" check="required phone"/>分，否则<input type="text" id="GPSLocation1" value="2" name="user" check="required phone"/>分。</small>
+												</p>
+											</div>
+										</div>
+										<div class="row">
+											<hr class="bk-margin-off" />
+											<div class="col-xs-2 bk-vcenter bk-padding-top-10 bk-padding-bottom-10">
+												<a class="bk-round bk-border-off bk-bg-lighten bk-icon bk-icon-2x bk-icon-default bk-bg-info">
+													<i class="fa fa-picture-o fa-2x"></i>
+												</a>
+											</div>
+											<div class="col-xs-10 bk-vcenter">
+												<h6 class="bk-fg-info bk-margin-off-bottom"><strong>点赞</strong></h6>
+												<p>
+													<small>点赞总分<input type="text" id="parise" value="20" name="user" check="required phone"/>分,每个点赞<input type="text" id="parise1" value="0.05" name="user" />分</small>
+												</p>
+											</div>
+										</div>
+										<div class="row">
+											<hr class="bk-margin-off" />
+											<div class="col-xs-2 bk-vcenter bk-padding-top-10 bk-padding-bottom-10">
+												<a class="bk-round bk-border-off bk-bg-lighten bk-icon bk-icon-2x bk-icon-default bk-bg-warning">
+													<i class="fa fa-signal fa-2x"></i>
+												</a>
+											</div>
+											<div class="col-xs-10 bk-vcenter">
+												<h6 class="bk-fg-warning bk-margin-off-bottom"><strong>主观分组成</strong></h6>
+												<p>
+													<small>主观分总分为<input type="text" id="positive" value="80" name="user" check="required phone"/>分，由教师星型评分和上传次数决定</small>
+												</p>
+											</div>
+										</div>
+										
+										<div class="panel bk-widget bk-border-off">
+											<div class="panel-body bk-ltr">
+												<div class="row text-center">
+													<!--<button type="button" id="postFile" class="btn btn-info btn-lg btn-block" onclick="postFile()"> POST</button> --> 
+													<button type="button" id="submit-all" class="btn btn-info btn-lg btn-block" > 提交</button>
+												</div>
+											</div>
+										</div>		
+										
+									</div>
+								</form>
+							</div>					
+						</div>						
+					</div>
+				</div>
+				<!-- End Main Page -->
+		
+				<!-- Footer -->
+				
+				<!-- End Footer -->
+			
+			</div>
+		</div><!--/container-->
+			
+		
+		<div class="clearfix"></div>		
+		
+		<%- include('components/common-js') %>
+		
+
+		<script type="text/javascript">
+			$(function(){
+				$("#mayform").checkForm();
+
+			})
+		</script>
+	</body>
+	
+</html>

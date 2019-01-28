@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Basic -->
+	<meta charset="UTF-8" />
+
+	<title>查看工作日志</title>
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+
+
+	<!-- Favicon and touch icons -->
+	<link rel="shortcut icon" href="/assets/ico/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-touch-icon-152x152.png" />
+
+	<%- include('components/common-css') %>
+
+	<link rel="stylesheet" href="/assets/css/dropload.css">
+	<link href="https://cdn.bootcss.com/bootstrap-star-rating/3.5.8/css/star-rating.min.css" rel="stylesheet">
+	<!-- <link href="/assets/css/star-rating.css" media="all" rel="stylesheet" type="text/css"/> -->
+	<!-- 缩略图-->
+	<link rel="stylesheet" href="/assets/src/images-grid.css">
+	</head>
+
+	<body>
+
+		<!-- Start: Header -->
+		<div class="navbar" role="navigation">
+			<div class="container-fluid container-nav">
+				<!-- Navbar Action -->
+				<ul class="nav navbar-nav navbar-actions navbar-left">
+					<li class="visible-md visible-lg"><a href="#" id="main-menu-toggle"><i class="fa fa-th-large"></i></a></li>
+					<li class="visible-xs visible-sm"><a href="#" id="sidebar-menu"><i class="fa fa-navicon"></i></a></li>			
+				</ul>
+				<!-- Navbar Left -->
+
+				<div class="navbar-left">
+					<!-- Search Form -->					
+					<form class="search navbar-form">
+						<div class="input-group input-search">
+							<input type="text" class="form-control bk-radius" name="name" placeholder="Search...">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+							</span>
+						</div>						
+					</form>
+				</div>
+				<div class="navbar-middle">																
+					<select id="projectStudents">						
+						<option>所有项目</option> 
+						<option>项目A</option> 
+						<option>项目B</option> 
+						<option>项目C</option> 
+					</select> 															
+				</div>
+				<!-- Navbar Right -->
+				<div class="navbar-right">			
+					<%- include('components/notification') %>
+				</div>
+				<!-- End Navbar Right -->
+			</div>		
+		</div>
+		<!-- End: Header -->
+
+
+		<!-- Start: Content -->
+		<div class="container-fluid content">	
+			<div class="row">
+
+				<%- include('components/side-bar') %>
+
+				<!-- Main Page -->
+				<div class="main ">
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="pull-left">
+							<ol class="breadcrumb visible-sm visible-md visible-lg">								
+								<li><a href="#"><i class="icon fa fa-home"></i>主页</a></li>
+								<li><a href="#"><i class="fa fa-file-text"></i>工作日志管理</a></li>
+								<li class="active"><i class="fa fa-car"></i>个人工作日志</li>
+							</ol>						
+						</div>
+						<div class="pull-right">
+							<a class="btn btn-success"  href="/student/rank" title="归档本项目" style="margin-top:10px;margin-right:10px;"><i class="fa fa-rss"></i>排行榜</a>  
+						</div>					
+					</div>
+					<!-- End Page Header -->					
+					<!-- End Page Header -->					
+					<div class="row">
+						<div class="col-md-12"  id="allProjectList">	
+							<div id="gallery"></div>
+
+
+							<% blog.forEach(function(x){ %>
+							<div class="panel bk-widget bk-border-off">
+								<div class="panel-body">
+									<div class="text-left bk-bg-white bk-padding-top-15 bk-padding-bottom-15">
+										<div class="row">
+											<div class="col-xs-6">
+												<div class="bk-avatar">
+													<img src="<%= x.StudentID.Avatar %>" title="Robert Diego" alt="" class="img-circle bk-img-60 bk-border-info bk-border-3x" />
+													<div class="media-heading bk-fg-warning" style="display: inline;">
+														<strong><%= x.StudentID.Name %></strong> 
+													</div>
+												</div>
+
+											</div>
+											<div class="col-xs-6 text-right">
+												<h4 class="bk-margin-off bk-fg-primary"><%= x.ProjectID.Name %></h4>
+												<h4 class="bk-margin-off bk-fg-primary">教师:<%= x.ProjectID.Author.Name %></h4>
+												<!--<small>CHIEF EXECUTIVE OFFICER</small>-->
+												<h5><%= x.PostDate %></h5>
+
+											</div>
+										</div>
+									</div>
+									<br />
+									<div class="bk-bg-white">
+										<blockquote>
+											<p style="color: #888"><%=x.Content%></p>
+										</blockquote>
+
+										<div class="img_box">	
+
+											<div class="imgggg" style="display: none;">	
+												<% x.Picture.forEach(function(p,i){ %>	
+													<img src="/images/pictures/<%= p %>" />
+												<% }); %>
+											</div>	
+											<div class="img_show">
+												
+											</div>											
+										</div>
+
+
+
+
+
+										<br />
+										<div class="actions">
+											<div class="row">
+												<% if (user.Role == 1){ %>
+													<div class="btn-group col-lg-9 col-md-9 col-sm-4 col-xs-4" >
+														<button type="button" class="bk-margin-5 btn btn-danger" style="visibility: hidden"></button>	
+													</div>
+												<% }else{ %>
+												<div class="btn-group col-lg-9 col-md-9 col-sm-4 col-xs-4" >
+													<!--<button type="button" class="btn btn-link"><small>Comment</small></button>-->
+													<button id="btn" type="button" class="bk-margin-5 btn btn-danger"  data-id="<%= x._id %>" 
+														<% x.Zan.forEach(function(z){ %>
+														<% if (user._id == z.Author){ %>
+														disabled
+														<% }else{ %>
+
+														<% } %>
+														<% }); %>
+														><i class="fa fa-heart-o"></i> <span id="praise"><%= x.Zan.length %></span></button>				
+													</div>
+												<% } %>
+												<% if (user.Role == 2){ %>
+													<div class="btn-group  col-lg-3 col-md-3 col-sm-8 col-xs-8 pull-right" style="visibility: hidden">
+														<input value="0" type="number" class="rating commentMark" min=0 max=5 step=0.5 data-size="sm" >
+													</div>
+
+													<% }else{ %>
+													<div class="btn-group  col-lg-3 col-md-3 col-sm-8 col-xs-8 pull-right">
+														<input value="<%= x.Mark %>" type="number" class="rating commentMark" min=0 max=5 step=0.5 data-size="sm" data-id="<%= x._id %>">
+													</div>
+												<% } %>
+												</div>
+
+											</div>
+										</div>
+
+										<hr class="bk-margin-off" />
+										<div class="">
+											<!-- <div class="bk-docs-scroll-hidden"> -->
+											<div class="bk-bg-white bk-padding-20 comment-box">
+												<% x.Comments.forEach(function(c){ %>
+												<div class="media">
+													<a class="pull-left bk-avatar"">
+														<img src="<%= c.Author.Avatar %>" alt="" class="img-circle bk-img-40 bk-border-info bk-border-1x" />
+													</a>
+													<div class="media-body">
+														<div class="pull-right small"><%= c.PostDate %></div>
+														<a>
+															<div class="media-heading <%= (c.Author.Role==2)?'bk-fg-primary':'bk-fg-warning' %>">
+																<strong><%= c.Author.Name %></strong> 
+															</div>
+														</a>
+														<p><%= c.Content %></p>												
+													</div>
+												</div>
+												<% });%>																		
+											</div>
+										</div>									
+										<div class="bk-bg-white bk-padding-top-15 bk-padding-bottom-15">
+											<div class="bk-bg-white bk-padding-top-15 bk-padding-bottom-15">
+												<form role="form" action="javascript:">
+													<div class="input-group">
+														<input type="text" class="form-control"/>
+														<span class="input-group-btn"  >
+															<button class="submitAccessment btn btn-default" type="button" data-id="<%= x._id %>" owner-id="<%= x.StudentID._id %>"><i class="submit-i fa fa-send-o"></i></button>
+														</span>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									<br />
+								</div>				
+								<% }); %>
+							</div>
+
+
+						</div>
+					</div>
+					<!-- End Main Page -->
+
+					<!-- Footer -->
+
+					<!-- End Footer -->
+
+				</div>
+			</div><!--/container-->
+
+			<div class="clearfix"></div>		
+
+			<%- include('components/common-js') %>
+
+			<!-- <script src="/assets/js/pages/star-rating.js" type="text/javascript"></script> -->
+			<script src="https://cdn.bootcss.com/bootstrap-star-rating/3.5.8/js/star-rating.min.js"></script>
+			<script src="/assets/src/images-grid.js" type="text/javascript"></script>
+			<!-- jQuery1.7以上 或者 Zepto 二选一，不要同时都引用 -->		
+			<script src="/assets/js/dropload.min.js"></script>
+
+			<script>			
+				function tipsBox(options) {
+					options = $.extend({
+						obj: null,  //jq对象，要在那个html标签上显示
+						str: "+1",  //字符串，要显示的内容;也可以传一段html，如: "<b style='font-family:Microsoft YaHei;'>+1</b>"
+						startSize: "12px",  //动画开始的文字大小
+						endSize: "30px",    //动画结束的文字大小
+						interval: 600,  //动画时间间隔
+						color: "red",    //文字颜色
+						callback: function() {}    //回调函数
+					}, options);
+					$("body").append("<span class='num'>"+ options.str +"</span>");
+					var box = $(".num");
+					var left = options.obj.offset().left + options.obj.width() / 2;
+					var top = options.obj.offset().top - options.obj.height();
+					box.css({
+						"position": "absolute",
+						"left": left + "px",
+						"top": top + "px",
+						"z-index": 9999,
+						"font-size": options.startSize,
+						"line-height": options.endSize,
+						"color": options.color
+					});
+					box.animate({
+						"font-size": options.endSize,
+						"opacity": "0",
+						"top": top - parseInt(options.endSize) + "px"
+					}, options.interval , function() {
+						box.remove();
+						options.callback();
+					});
+				}			
+
+
+	//按名字查询项目
+	function selectProjectByName(){
+		var name=document.getElementById("selectProjectByName").value;
+		if(name==""){
+			alert("请输入学生姓名！");
+			return false;
+		}
+		$.ajax({ 
+			url: url, 
+			type: 'POST', 
+			data: name, 
+
+			success: function (returndata) { 
+				//var jsonObj = eval('('+returndata+')');
+				document.getElementById("selectProjectByNameList").avlue=name;
+
+			}, 
+			error: function (returndata) { 
+				alert(returndata); 
+			} 
+		});
+	}
+	
+	window.onload = function() {
+		var sel = document.getElementById("projectStudents");
+		if(sel&&sel.addEventListener){
+			sel.addEventListener('change',function(e){
+				var ev = e||window.event;
+				var target = ev.target||ev.srcElement;
+				alert(target.value);
+			},false)
+		}
+	}
+
+
+	function del_ff(elem){
+
+		var elem_child = elem.childNodes;
+
+		for(var i=0; i<elem_child.length;i++){
+
+			if(elem_child[i].nodeName == "#text" && !/\s/.test(elem_child.nodeValue))
+
+				{elem.removeChild(elem_child)
+
+				}
+
+			}
+
+		}
+
+
+
+
+//日志评论点击提交
+var submitAccessment=document.getElementById("allProjectList").addEventListener("click",function(e) {
+			// e.target是被点击的元素!
+			// 如果被点击的是option元素
+
+			if( e.target && (e.target.id=="submitAccessment"||e.target.id=="submit-i")) {
+
+				// 找到目标，输出ID!
+				if(e.target.id=="submitAccessment"){
+					var blogid = e.target.getAttribute('data-id');
+					var ownerid = e.target.getAttribute('owner-id');
+					var content = e.target.parentNode.parentNode.getElementsByTagName("input")[0].value;
+					var content_box = e.target.parentNode.parentNode.getElementsByTagName("input")[0];
+					var add = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.childNodes[9].getElementsByTagName("div")[2];
+				}else if(e.target.id=="submit-i") {
+					var blogid = e.target.parentNode.getAttribute('data-id');
+					var ownerid = e.target.parentNode.getAttribute('owner-id');
+					var content = e.target.parentNode.parentNode.parentNode.getElementsByTagName("input")[0].value;
+					var content_box = e.target.parentNode.parentNode.parentNode.getElementsByTagName("input")[0];
+					var add = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.childNodes[9].getElementsByTagName("div")[2];
+				}
+				else{
+				}
+
+
+				$.ajax({ 
+					url: "/blog/comment", 
+					type: 'GET', 
+					data: {
+						blogid:blogid,
+						content:content,
+						ownerid:ownerid
+					}, 
+
+					success: function (returndata) { 
+							//var jsonObj = eval('('+returndata+')');
+							//document.getElementById("selectProjectByNameList").avlue=name;
+							// if(returndata == 200){
+								var name = '';
+
+								text = '<a class="pull-left bk-avatar">'
+								+	'<img src="<%= user.Avatar %>" alt="" class="img-circle bk-img-40 bk-border-info bk-border-1x" />'
+								+'</a>'
+								+'<div class="media-body">'
+								+'<div class="pull-right small"></div>'
+								+'<a>'
+								+	'<div class="media-heading <%= (user.Role==2)?'bk-fg-primary':'bk-fg-warning' %>">'
+								+		'<strong>'+'<%= user.Name %>'+'</strong>'
+								+	'</div>'
+								+'</a>'
+								+'<p>'+content+'</p>	'															
+								+'</div>';
+								var div = document.createElement("div"); 
+								div.className = "media";
+								div.innerHTML = text; 
+								add.appendChild(div); 
+								var w=document.createElement("script");
+								w.setAttribute("type","text/javascript");
+								$('body').append(w);
+								content_box.value = '';
+								$(".mCustomScrollbar").mCustomScrollbar('scrollTo','last');//更新内容后滚轮跟踪到最后一条
+							// }
+						}, 
+						error: function (returndata) { 
+							alert(returndata); 
+						} 
+					});
+				
+			}
+			//触发点赞
+			else if(e.target && e.target.nodeName == "BUTTON"&&e.target.id=="btn"){
+				// alert("8888");
+				tipsBox({
+					obj: $(e.target),
+					str: "+1",
+					callback: function() {
+						
+
+						var blogid = e.target.getAttribute('data-id');
+
+						$.ajax({ 
+							url: "/blog/zan", 
+							type: 'GET', 
+							data: {
+								blogid:blogid
+							}, 
+
+							success: function (returndata) { 
+							//var jsonObj = eval('('+returndata+')');
+							//document.getElementById("selectProjectByNameList").avlue=name;
+							if(returndata == 200){
+								//alert(e.target.childNodes[1].nodeName);
+								var num=e.target.childNodes[2].innerHTML;
+						// console.log(num)
+						var num1=parseInt(num);
+						num1 = num1 + 1;
+						// alert(num1)
+						e.target.childNodes[2].innerHTML=num1;
+						e.target.setAttribute("disabled","true");
+						//$("#btn").css("background","green");
+
+					}
+				}, 
+				error: function (returndata) { 
+					alert(returndata); 
+				} 
+			});
+
+					}
+				});
+			}
+			//-------------------添加缩略图切换--------------------------------cjj
+			//else if(e.target.nodeName=="IMG"&&e.target.getAttribute("class")=="img-responsive"){
+			//	var pictures=[];
+
+			//}
+			
+			//-------------------添加缩略图切换--------------------------------cjj
+			//alert(e.target.id);
+		},true);
+	</script>
+	
+	<script>
+		$(function(){
+			$('.img_box').each(function(){
+				var pictures=[];
+				var content_img = $(this).find('.imgggg').find('img');
+				content_img.each(function(){
+					pictures.push($(this).attr("src"));
+				});
+				$(this).find('.img_show').imagesGrid({
+					images:pictures,
+					getViewAllText: function(imgsCount) { return '查看全部图片' }
+				});
+				$(this).removeClass('img_box');
+			});
+
+			$("#allProjectList").on('click','.submitAccessment',function(){
+				var blogid = $(this).attr('data-id');
+				var ownerid = $(this).attr('owner-id');
+				var content_box = $(this).parent().parent().find('input');
+				var content_no_space  = content_box.val();
+				console.log(content_no_space);
+
+				if(content_no_space.replace(/(^\s*)|(\s*$)/g, "")==""){
+					alert('评论不能为空');
+					return;
+				}
+				var add = $(this).parents('.panel-body').find('.comment-box');
+
+				$.ajax({ 
+					url: "/blog/comment", 
+					type: 'GET', 
+					data: {
+						blogid:blogid,
+						content:content_box.val(),
+						ownerid:ownerid
+					}, 
+
+					success: function (returndata) { 
+						var name = '';
+
+						text = '<a class="pull-left bk-avatar">'
+						+	'<img src="<%= user.Avatar %>" alt="" class="img-circle bk-img-40 bk-border-info bk-border-1x" />'
+						+'</a>'
+						+'<div class="media-body">'
+						+'<div class="pull-right small">'+returndata+'</div>'
+						+'<a>'
+						+	'<div class="media-heading <%= (user.Role==2)?'bk-fg-primary':'bk-fg-warning' %>">'
+						+		'<strong>'+'<%= user.Name %>'+'</strong>'
+						+	'</div>'
+						+'</a>'
+						+'<p>'+content_box.val()+'</p>	'															
+						+'</div>';
+						var div = document.createElement("div"); 
+						div.className = "media";
+						div.innerHTML = text; 
+						add.append(div); 
+						// var w=document.createElement("script");
+						// w.setAttribute("type","text/javascript");
+						// $('body').append(w);
+						content_box.val('');
+							// $(".mCustomScrollbar").mCustomScrollbar('scrollTo','last');//更新内容后滚轮跟踪到最后一条
+						}, 
+						error: function (returndata) { 
+							alert(returndata); 
+						} 
+					});
+
+			});
+			// $("#allProjectList").on('click','.submit-i',function(){
+			// 	$(this).parent('.submitAccessment').click();
+			// });
+
+
+			var page = <%= page %>;
+			var isLastPage = <%= isLastPage %>;
+			var userRole = <%= user.Role %>;
+			var user_id = '<%= user._id %>';
+			
+
+			$('.content').dropload({
+				scrollArea : window,
+				loadDownFn : function(me){
+					console.log(page);
+					console.log(isLastPage);
+					var ex_url = window.location.search;
+					if(!isLastPage){
+						$.ajax({
+							type: 'GET',
+							url: '/blog/list'+ex_url,
+							data:{
+								page:page+1
+							},
+							success: function(data){
+								console.log(data);
+								var result = '';
+								var hh = document.createElement("input");
+								hh.setAttribute("class","rating");
+								hh.setAttribute("id","input-21e");
+								hh.setAttribute("type","number");
+								hh.setAttribute("min",0);
+								hh.setAttribute("max",5);
+								hh.setAttribute("step",0.5);
+								hh.setAttribute("data-size","xs");
+								hh.setAttribute("disabled","");
+
+								data['blog'].forEach(function(value, index, array) {
+									console.log(value);
+									result +=  '<div class="panel bk-widget bk-border-off">'
+									+'<div class="panel-body">'
+									+'	<div class="text-left bk-bg-white bk-padding-top-15 bk-padding-bottom-15">'
+									+'		<div class="row">'
+									+'		<div class="col-xs-6">'
+									+'			<div class="bk-avatar">'
+									+'				<img src="'+value.StudentID.Avatar+'" title="Robert Diego" alt="" class="img-circle bk-img-60 bk-border-info bk-border-3x" />'
+
+									+'<div class="media-heading bk-fg-warning" style="display: inline;">'
+									+'				<strong>'+ value.StudentID.Name +'</strong>'
+									+'		</div>'
+									+'			</div>'
+									+'		</div>'
+									+'		<div class="col-xs-6 text-right">'
+									+'			<h4 class="bk-margin-off bk-fg-primary">'+value.ProjectID.Name +'</h4>'
+									+'			<h4 class="bk-margin-off bk-fg-primary">教师:'+value.ProjectID.Author.Name +'</h4>'
+									+'			<!--<small>CHIEF EXECUTIVE OFFICER</small>-->'
+									+'			<h5>'+value.PostDate +'</h5>'
+									+'										</div>'
+									+'									</div>'
+									+'								</div>'
+									+'								<br />'
+									+'								<div class="bk-bg-white">'
+
+
+									+'<blockquote>'
+									+'	<p style="color: #888">'+value.Content +'</p>'
+									+'</blockquote>'
+									
+										+'<div class="img_box">'	
+
+											+'<div class="imgggg" style="display: none;">'	;
+											value.Picture.forEach(function(value1, index1, array1) {	
+												result +='<img src="/images/pictures/'+value1+'" />'	;
+											}); 
+											result += '</div>'	
+											+'<div class="img_show">'
+												
+											+'</div>'											
+										+'</div>';
+
+
+
+
+									
+									result +='									<br />'
+									+'									<div class="actions">'
+									+'										<div class="row">';
+									if (userRole == 1){ 
+										result+='											<div class="btn-group col-lg-9 col-md-9 col-sm-4 col-xs-4" >'
+										+'												<button type="button" class="bk-margin-5 btn btn-danger" style="visibility: hidden"></button>'
+										+'											</div>';
+									}else{ 
+										result+='											<div class="btn-group col-lg-9 col-md-9 col-sm-4 col-xs-4" >'
+										+'												<!--<button type="button" class="btn btn-link"><small>Comment</small></button>-->'
+										+'												<button id="btn" type="button" class="bk-margin-5 btn btn-danger"  data-id="'+value._id+'" ';
+										value.Zan.forEach(function(value2, index2, array2) {
+											if (user_id == value2.Author){ 
+												result+='													disabled';
+											}else{ } 
+										});
+										result+='													><i class="fa fa-heart-o"></i> <span id="praise">'+value.Zan.length+'</span></button>'	
+										+'												</div>';
+									} 
+									if (userRole == 2){ 
+										result+='												<div class="btn-group  col-lg-3 col-md-3 col-sm-8 col-xs-8 pull-right" style="visibility: hidden">'
+										+'													<input value="0" type="number" class="rating commentMark" min=0 max=5 step=0.5 data-size="sm" >'
+										+'												</div>';
+									}else{ 
+										result+='												<div class="btn-group  col-lg-3 col-md-3 col-sm-8 col-xs-8 pull-right">'
+										+'													<input value="'+value.Mark +'" type="number" class="rating commentMark" min=0 max=5 step=0.5 data-size="sm" data-id="'+value._id+'">'
+										+'												</div>';
+									} 
+									result+='											</div>'
+									+'										</div>'
+									+'									</div>'
+									+'									<hr class="bk-margin-off" />'
+									+'									<div class="">'
+									+'										<div class="comment-box bk-bg-white bk-padding-20">';
+									value.Comments.forEach(function(value3, index3, array3) {
+										result+='											<div class="media">'
+										+'												<a class="pull-left bk-avatar">'
+										+'													<img src="'+value3.Author.Avatar+'" alt="" class="img-circle bk-img-40 bk-border-info bk-border-1x" />'
+										+'												</a>'
+										+'												<div class="media-body">'
+										+'													<div class="pull-right small">'+ value3.PostDate +'</div>'
+										+'													<a>'
+										+'														<div class="media-heading '+ ((value3.Author.Role==2)?'bk-fg-primary':'bk-fg-warning') +'">'
+										+'															<strong>'+ value3.Author.Name +'</strong> '
+										+'														</div>'
+										+'													</a>'
+										+'													<p>'+ value3.Content +'</p>												'
+										+'											</div>'
+										+'										</div>';
+									});
+									result+='									</div>'
+									+'								</div>									'
+									+'								<div class="bk-bg-white bk-padding-top-15 bk-padding-bottom-15">'
+									+'									<div class="bk-bg-white bk-padding-top-15 bk-padding-bottom-15">'
+									+'										<form role="form" action="javascript:">'
+									+'											<div class="input-group">'
+									+'												<input type="text" class="form-control"/>'
+									+'												<span class="input-group-btn"  >'
+									+'													<button class="submitAccessment btn btn-default" type="button" data-id="'+value._id +'" owner-id="'+  value.StudentID._id +'" ><i class="submit-i fa fa-send-o" ></i></button>'
+									+'												</span>'
+									+'											</div>'
+									+'										</form>'
+									+'									</div>'
+									+'								</div>'
+									+'							</div>'
+									+'							<br />'
+									+'						</div>	';
+
+								});
+
+
+setTimeout(function(){
+	$('#allProjectList').append(result);
+	$('.img_box').each(function(){
+				var pictures=[];
+				var content_img = $(this).find('.imgggg').find('img');
+				content_img.each(function(){
+					pictures.push($(this).attr("src"));
+				});
+				$(this).find('.img_show').imagesGrid({
+					images:pictures,
+					getViewAllText: function(imgsCount) { return '查看全部图片' }
+				});
+				// $(this).removeClass('img_box');
+	});
+
+	var w=document.createElement("script");
+
+
+	w.setAttribute("src","https://cdn.bootcss.com/bootstrap-star-rating/3.5.8/js/star-rating.min.js");
+
+	w.setAttribute("type","text/javascript");
+
+
+	$('body').append(w);
+
+
+
+
+	page = parseInt(data['page']);
+	isLastPage = data['isLastPage'];
+	me.resetload();
+},2000);
+},
+error: function(xhr, type){
+	alert('Ajax error!');
+
+	me.resetload();
+}
+});
+}
+else{
+
+	me.noData();
+	me.resetload();
+}
+}
+});
+
+			//3.21老师评分功能
+			$("#allProjectList").on('change','.rating',function(){
+				var blogid = $(this).attr('data-id');
+				var mark = $(this).val();
+				// alert(blogid);
+				$.ajax({ 
+					url: "/blog/mark", 
+					type: 'POST', 
+					data: {
+						blogid:blogid,
+						mark:mark
+					}, 
+
+					success: function (returndata) { 
+					}, 
+					error: function (returndata) { 
+						alert(returndata); 
+					} 
+				});
+			});
+			//3.25用jq重写评论
+			
+
+			
+
+		});
+	</script>
+
+</body>
+
+</html>
